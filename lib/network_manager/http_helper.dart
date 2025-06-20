@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:weather_app_with_provider/main.dart';
+import 'package:weather_app_with_provider/routes/routes_name.dart';
 import 'package:weather_app_with_provider/utils/print_value.dart';
 import 'package:weather_app_with_provider/utils/toast_message.dart';
 
@@ -14,7 +16,7 @@ class HttpHelper {
 
     if (isRequireAuthorization) {
       apiHeaders = {
-        "content-type": "application/json",
+        "Content-type": "application/json",
         "Authorization": 'Bearer "userBearerToken"',
       };
     }
@@ -38,8 +40,8 @@ class HttpHelper {
     Map<String, String> headers = {"Content-Type": "application/json"};
     if (isRecuredAuthorization) {
       headers = {
-        "content-type": "application/json",
-        "Authorization": 'Bearer "userBearerToken"',
+        "Content-type": "application/json",
+        "x-api-key": "reqres-free-v1",
       };
     }
     try {
@@ -73,7 +75,7 @@ class HttpHelper {
     if (isRecuredAuthorization) {
       headers = {
         "content-type": "application/json",
-        "Authorization": 'Bearer "userBearerToken"',
+        "Authorization": 'Bearer userBearerToken',
       };
     }
     try {
@@ -141,11 +143,15 @@ class HttpHelper {
         return responseJson;
       case 400:
         var responseJson = json.decode(response.body);
-        if (responseJson.containsKey("message")) {
-          toastMessage(responseJson["message"].toString());
+        if (responseJson.containsKey("error")) {
+          toastMessage(responseJson["error"].toString());
         }
         throw Exception("Error with Status code 400");
       case 401:
+        navigatorKey.currentState!.pushNamedAndRemoveUntil(
+          RoutesName.login,
+          (route) => false,
+        );
         throw Exception("Unauthorized");
       case 500:
         throw Exception("Error with Status code 500");

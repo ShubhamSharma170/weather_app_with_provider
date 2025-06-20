@@ -9,6 +9,7 @@ class AllColors {
   static Color white70 = Colors.white70;
 
   static Color purple0xFFC135E3 = Color(0xFFC135E3);
+  static Color deepPurple = Colors.deepPurple;
 
   static Color teal600 = Colors.teal.shade600;
 
