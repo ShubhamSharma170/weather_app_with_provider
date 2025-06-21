@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_with_provider/helper/storage_helper.dart';
 import 'package:weather_app_with_provider/routes/routes.dart';
-import 'package:weather_app_with_provider/screen/auth/login.dart';
+import 'package:weather_app_with_provider/screen/splash_screen.dart/splash_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageHelper().init();
   runApp(const MyApp());
 }
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginScreen(),
+      home: SplashScreen(),
       onGenerateRoute: (settings) => Routes.generateRoutes(settings),
       navigatorKey: navigatorKey,
     );

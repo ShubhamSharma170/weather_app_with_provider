@@ -11,6 +11,11 @@ class StorageHelper {
     sp = await SharedPreferences.getInstance();
   }
 
+  void clear() async {
+    await sp.clear();
+    print("Storage cleared");
+  }
+
   void setToken(String token) {
     sp.setString("token", token);
   }

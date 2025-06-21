@@ -1,4 +1,5 @@
 import 'package:weather_app_with_provider/screen/auth/login.dart';
+import 'package:weather_app_with_provider/screen/location/location.dart';
 
 import 'routes_name.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,10 @@ class Routes {
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (BuildContext context) => LoginScreen(),
+        );
+      case RoutesName.location:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => LocationScareen(),
         );
       default:
         return MaterialPageRoute(
