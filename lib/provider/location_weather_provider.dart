@@ -8,7 +8,7 @@ class LocationWeatherProvider with ChangeNotifier {
   LocationWeatherModel model = LocationWeatherModel();
   void getLocationWeather(String location) async {
     RestClient.getLocationWeatherDetails(location)
-        .then((value) {
+        .then((value) async {
           model = value;
           notifyListeners();
         })
